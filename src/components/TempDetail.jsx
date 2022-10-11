@@ -4,9 +4,14 @@ import { UilRaindropsAlt, UilWind, UilSun, UilSunset, UilArrowUp, UilArrowDown }
 import TemplateWeatherDetail from './TemplateWeatherDetail';
 import { formatToLocalTime, iconUrlFromCode } from '../services/Context';
 
-function TempDetail({weather:{
-    details,icon,temp,temp_max,temp_min,timezone,sunrise,sunset,speed,humidity
-}}) {
+function TempDetail({ weather: {
+    details, icon, temp, temp_max, temp_min, timezone, sunrise, sunset, speed, humidity
+}, units, setUnits }) {
+    
+    const handleUnit = (e) => {
+        const selectedUnit = e.currentTarget.name
+        if (units !== selectedUnit) setUnits(selectedUnit)
+    }
     return (
         <div>
             <div className='flex flex-row items-center justify-center py-1 text-sm text-blue-100'>
@@ -33,13 +38,15 @@ function TempDetail({weather:{
 
             </div>
             <div className="flex flex-row items-center justify-center">
-                <button name="matric" className="text-xl text-white font-light transition ease-in hover:scale-110">
+                <button name="matric" className="text-xl text-white font-light transition ease-in hover:scale-110"
+                    onClick={handleUnit}>
                     °C
                 </button>
                 <p name="matric" className="text-xl text-white mx-3">
                     |
                 </p>
-                <button name="matric" className="text-xl text-white font-light transition ease-in hover:scale-110">
+                <button name="matric" className="text-xl text-white font-light transition ease-in hover:scale-110"
+                    onClick={handleUnit}>
                     °F
                 </button>
             </div>
@@ -48,7 +55,7 @@ function TempDetail({weather:{
                 <TemplateWeatherDetail
                     title="Sunrise"
                     icon=<UilSun />
-                    detail={formatToLocalTime(sunrise,timezone, "hh:mm a")}
+                    detail={formatToLocalTime(sunrise, timezone, "hh:mm a")}
                 />
                 <p className='mx-3 text-3xl font-extralight'>|</p>
                 <TemplateWeatherDetail
@@ -66,7 +73,7 @@ function TempDetail({weather:{
                 <TemplateWeatherDetail
                     title="Sunset"
                     icon=<UilSunset />
-                    detail={formatToLocalTime(sunset,timezone, "hh:mm a")}
+                    detail={formatToLocalTime(sunset, timezone, "hh:mm a")}
                 />
             </div>
 

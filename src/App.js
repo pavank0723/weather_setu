@@ -25,13 +25,13 @@ function App() {
   }, [query, units])
 
   return <div className='mx-auto rounded-md max-w-screen-md mt-4 py-5 px-32 bg-gradient-to-br from-blue-500 to-cyan-400 shadow-xl shadow-gray-300'>
-    <TopButtons />
-    <InputButton />
+    <TopButtons setQuery = {setQuery}/>
+    <InputButton setQuery = {setQuery} units = {units} setUnits = {setUnits}/>
 
     {weather && (
       <div>
         <TimeAndLocation weather= {weather}/>
-        <TempDetail weather= {weather}/>
+        <TempDetail weather= {weather} units = {units} setUnits = {setUnits}/>
         <Forecast title='Today Forecast' items={weather.hourly}/>
         <Forecast title='Daily Forecast' items={weather.daily}/>
       </div>
