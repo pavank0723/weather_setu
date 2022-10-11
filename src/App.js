@@ -22,22 +22,33 @@ function App() {
 
     }
     fetchWeather()
-  }, [query, units])
+  }, [query, units]);
 
-  return <div className='mx-auto rounded-md max-w-screen-md mt-4 py-5 px-32 bg-gradient-to-br from-blue-500 to-cyan-400 shadow-xl shadow-gray-300'>
-    <TopButtons setQuery = {setQuery}/>
-    <InputButton setQuery = {setQuery} units = {units} setUnits = {setUnits}/>
+
+  const formatBackground = () => {
+    if (!weather) return 'from-blue-500 to-cyan-400'
+    const threshold = units === "metric" ? 20 : 60
+    if (weather.temp <= threshold) return "from-blue-500 to-cyan-400"
+
+    return "from-orange-500 to-yellow-400"
+  }
+
+  return (
+  <div className={`mx-auto rounded-md max-w-screen-md mt-4 py-5 px-32 bg-gradient-to-br h-fit shadow-xl shadow-gray-300 ${formatBackground()}`}>
+    <TopButtons setQuery={setQuery} />
+    <InputButton setQuery={setQuery} units={units} setUnits={setUnits} />
 
     {weather && (
       <div>
-        <TimeAndLocation weather= {weather}/>
-        <TempDetail weather= {weather} units = {units} setUnits = {setUnits}/>
-        <Forecast title='Today Forecast' items={weather.hourly}/>
-        <Forecast title='Daily Forecast' items={weather.daily}/>
+        <TimeAndLocation weather={weather} />
+        <TempDetail weather={weather} units={units} setUnits={setUnits} />
+        <Forecast title='Today Forecast' items={weather.hourly} />
+        <Forecast title='Daily Forecast' items={weather.daily} />
       </div>
     )}
 
   </div>
+  )
 }
 
 export default App;
