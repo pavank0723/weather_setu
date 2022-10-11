@@ -2,41 +2,44 @@ import React from 'react'
 import TempImage from '../assets/sun_30.png'
 import { UilRaindropsAlt, UilWind, UilSun, UilSunset, UilArrowUp, UilArrowDown } from '@iconscout/react-unicons'
 import TemplateWeatherDetail from './TemplateWeatherDetail';
+import { formatToLocalTime, iconUrlFromCode } from '../services/Context';
 
-function TempDetail() {
+function TempDetail({weather:{
+    details,icon,temp,temp_max,temp_min,timezone,sunrise,sunset,speed,humidity
+}}) {
     return (
         <div>
             <div className='flex flex-row items-center justify-center py-1 text-sm text-blue-100'>
-                <p> Cloud Rainy</p>
+                <p> {details}</p>
             </div>
 
             <div className='flex flex-row items-center justify-center text-white py-1'>
-                <img className='w-36' src={TempImage} alt='temp_img' />
+                <img className='w-36' src={iconUrlFromCode(icon)} alt='temp_img' />
             </div>
             <div className='flex flex-row items-center justify-between py-1 text-white'>
 
                 <TemplateWeatherDetail
                     title="Humidity"
                     icon=<UilRaindropsAlt />
-                    detail="43% - 50%"
+                    detail={`${humidity.toFixed()} %`}
                 />
 
-                <p className='text-5xl font-semibold'>34°</p>
+                <p className='text-5xl font-semibold'>{temp.toFixed()}°</p>
                 <TemplateWeatherDetail
                     title="Wind Speed"
                     icon=<UilWind />
-                    detail="3 km/h"
+                    detail={`${speed.toFixed()} km/h`}
                 />
 
             </div>
             <div className="flex flex-row items-center justify-center">
-                <button name="matric" className="text-xl text-white font-light">
+                <button name="matric" className="text-xl text-white font-light transition ease-in hover:scale-110">
                     °C
                 </button>
                 <p name="matric" className="text-xl text-white mx-3">
                     |
                 </p>
-                <button name="imperial" className="text-xl text-white font-light">
+                <button name="matric" className="text-xl text-white font-light transition ease-in hover:scale-110">
                     °F
                 </button>
             </div>
@@ -45,25 +48,25 @@ function TempDetail() {
                 <TemplateWeatherDetail
                     title="Sunrise"
                     icon=<UilSun />
-                    detail="04 : 30 AM"
+                    detail={formatToLocalTime(sunrise,timezone, "hh:mm a")}
                 />
                 <p className='mx-3 text-3xl font-extralight'>|</p>
                 <TemplateWeatherDetail
                     title="High"
                     icon=<UilArrowUp />
-                    detail="30°"
+                    detail={`${temp_max.toFixed()}°`}
                 />
                 <p className='mx-3 text-3xl font-extralight'>|</p>
                 <TemplateWeatherDetail
                     title="Low"
                     icon=<UilArrowDown />
-                    detail="18°"
+                    detail={`${temp_min.toFixed()}°`}
                 />
                 <p className='mx-3 text-3xl font-extralight'>|</p>
                 <TemplateWeatherDetail
                     title="Sunset"
                     icon=<UilSunset />
-                    detail="06 : 49 PM"
+                    detail={formatToLocalTime(sunset,timezone, "hh:mm a")}
                 />
             </div>
 
