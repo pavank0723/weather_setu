@@ -27,9 +27,9 @@ const formatCurrentWeather = (data) => {
         wind: { speed }
     } = data
 
-    const { main: details, icon } = weather[0]
+    const { main: details, icon,id } = weather[0]
     return {
-        lat, lon, temp, temp_min, temp_max, humidity, name, dt, country, sunrise, sunset, details, icon, speed
+        lat, lon, temp, temp_min, temp_max, humidity, name, dt, country, sunrise, sunset, details, icon,id, speed
     }
 }
 
@@ -42,6 +42,7 @@ const formatForcastWeather = (data) =>{
         return{
             title: formatToLocalTime(d.dt, timezone, 'ccc'),
             temp: d.temp.day,
+            id:d.id,
             icon:d.weather[0].icon
         }
     })
@@ -51,6 +52,7 @@ const formatForcastWeather = (data) =>{
         return{
             title: formatToLocalTime(d.dt, timezone, 'h a'),
             temp: d.temp,
+            id:d.id,
             icon:d.weather[0].icon
         }
     })

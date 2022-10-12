@@ -7,7 +7,7 @@ import { formatToLocalTime, iconUrlFromCode } from '../services/Context';
 function TempDetail({ weather: {
     details, icon, temp, temp_max, temp_min, timezone, sunrise, sunset, speed, humidity
 }, units, setUnits }) {
-    
+
     const handleUnit = (e) => {
         const selectedUnit = e.currentTarget.name
         if (units !== selectedUnit) setUnits(selectedUnit)
@@ -19,7 +19,14 @@ function TempDetail({ weather: {
             </div>
 
             <div className='flex flex-row items-center justify-center text-white py-1'>
-                <img className='w-36' src={iconUrlFromCode(icon)} alt='temp_img' />
+                <img className='
+                w-26
+                sm:w-36
+                md:w-36
+                lg:w-36
+                xl:w-36
+                2xl:w-36
+                ' src={iconUrlFromCode(icon)} alt='temp_img' />
             </div>
             <div className='flex flex-row items-center justify-between py-1 text-white'>
 
@@ -51,7 +58,14 @@ function TempDetail({ weather: {
                 </button>
             </div>
 
-            <div className='flex flex-row items-center justify-around space-x-6 py-3 text-white'>
+            <div className='
+            flex flex-row items-center justify-between space-x-2 py-3 text-white
+            sm:flex sm:flex-row sm:space-x-6 sm:justify-around
+            md:flex md:flex-row md:space-x-6 md:justify-around
+            lg:flex lg:flex-row lg:space-x-6 lg:justify-around
+            xl:flex xl:flex-row xl:space-x-6 xl:justify-around
+            2xl:flex 2xl:flex-row 2xl:space-x-6 2xl:justify-around
+            '>
                 <TemplateWeatherDetail
                     title="Sunrise"
                     icon=<UilSun />

@@ -6,17 +6,19 @@ function InputButton({ setQuery }) {
 
     const handleSearchCity = () => {
         if (city !== '') setQuery({ q: city })
+
     }
 
-    const handleKeyPress = (event) => {
-        if (event.key === 'Enter') {
+    const handleKeyPress = (e) => {
+        if (e.key === 'enter') {
             if (city !== '') setQuery({ q: city })
         }
     }
 
-    const handleCurrentLocation = () =>{
-        if(navigator.geolocation){
-            navigator.geolocation.getCurrentPosition((position) =>{
+
+    const handleCurrentLocation = () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
                 let lat = position.coords.latitude
                 let lon = position.coords.longitude
 
@@ -27,19 +29,28 @@ function InputButton({ setQuery }) {
             })
         }
     }
+
     return (
-        <div className="flex flex-row justify-content my-5">
+        <div className="
+        flex flex-row justify-content my-4
+        sm:my-6
+        md:my-6
+        lg:my-6
+        xl:my-6
+        2xl:my-6
+        ">
             <div className="flex flex-row w-full items-center justify-center space-x-4">
                 <input type="text" className="focus:outline-none rounded-sm p-2 w-full shadow-xl capitalize" placeholder="Search location..."
                     value={city}
+                    onKeyPress={(e) => handleKeyPress(e)}
                     onChange={(e) => setCity(e.currentTarget.value)}
                 />
                 <UilSearch size={25} className="text-white  transition ease-out hover:scale-125"
                     onClick={handleSearchCity}
-                    onKeyPress={handleKeyPress}
+
                 />
                 <UilUserLocation size={25} className="text-white cursor-pointer transition ease-out hover:scale-125 "
-                onClick={handleCurrentLocation} />
+                    onClick={handleCurrentLocation} />
             </div>
 
         </div>)
