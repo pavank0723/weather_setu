@@ -2,7 +2,7 @@ import React from 'react'
 import TempImage from '../assets/sun_30.png'
 import { UilRaindropsAlt, UilWind, UilSun, UilSunset, UilArrowUp, UilArrowDown } from '@iconscout/react-unicons'
 import TemplateWeatherDetail from './TemplateWeatherDetail';
-import { formatToLocalTime, iconUrlFromCode } from '../services/Context';
+import { formatToLocalTime, iconUrlFromCode,WeatherIcons } from '../services/Context';
 
 function TempDetail({ weather: {
     details, icon, temp, temp_max, temp_min, timezone, sunrise, sunset, speed, humidity
@@ -26,7 +26,7 @@ function TempDetail({ weather: {
                 lg:w-36
                 xl:w-36
                 2xl:w-36
-                ' src={iconUrlFromCode(icon)} alt='temp_img' />
+                ' src={WeatherIcons(icon)} alt='temp_img' />
             </div>
             <div className='flex flex-row items-center justify-between py-1 text-white'>
 

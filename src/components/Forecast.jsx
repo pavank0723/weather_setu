@@ -1,6 +1,6 @@
 import React from "react";
 import TemplateForecastDetail from './TemplateForecastDetail';
-import { iconUrlFromCode } from "../services/Context";
+import { WeatherIcons } from "../services/Context";
 
 function Forecast({ title, items }) {
     return (
@@ -21,7 +21,7 @@ function Forecast({ title, items }) {
                             <React.Fragment key={index}>
                                 <TemplateForecastDetail
                                     title={item.title}
-                                    icon={iconUrlFromCode(item.icon)}
+                                    icon={WeatherIcons(item.icon)}
                                     detail={`${item.temp.toFixed()}°`}
                                 />
                             </React.Fragment>

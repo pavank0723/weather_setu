@@ -74,8 +74,71 @@ export const formatToLocalTime = (
     format = "hh:mm a"
 ) =>DateTime.fromSeconds(secs).setZone(zone).toFormat(format)
 
+//-----===== Get Icon with code =====--------
+export const WeatherIcons = (code) =>{
+    switch(code){
+        case "01d":
+            return require("../assets/sun_113.png")
+            break
+        case "01n":
+            return require("../assets/moon_113.png")
+            break
+        case "02d":
+            return require("../assets/sun_116.png")
+            break
+        case "02n":
+            return require("../assets/moon_116.png")
+            break
+        case "03d":
+            return require("../assets/cloud_119.png")
+            break
+        case "03n":
+            return require("../assets/cloud_119.png")
+            break
+        case "04d":
+            return require("../assets/cloud_122.png")
+            break
+        case "04n":
+            return require("../assets/cloud_122.png")
+            break
+        case "09d":
+            return require("../assets/cloud_302.png")
+            break
+        case "09n":
+            return require("../assets/cloud_302.png")
+            break
+        case "10d":
+            return require("../assets/sun_305_356.png")
+            break
+        case "10n":
+            return require("../assets/moon_305_356.png")
+            break
+        case "11d":
+            return require("../assets/cloud_389.png")
+            break
+        case "11n":
+            return require("../assets/cloud_389.png")
+            break
+        case "13d":
+            return require("../assets/cloud_332.png")
+            break
+        case "13n":
+            return require("../assets/cloud_332.png")
+            break
+        case "50d":
+            return require("../assets/cloud_143.png")
+            break
+        case "50n":
+            return require("../assets/cloud_143.png")
+            break
+        
+    }
+}
+
 // -----======= Icon Formater ========--------
+// export const iconUrlFromCode = (code) => `https://openweathermap.org/img/wn/${code}@2x.png`
 export const iconUrlFromCode = (code) => `https://openweathermap.org/img/wn/${code}@2x.png`
+
 export const getFormattedWeatherData = async (searchParams) => {
     // -----======= CURRENT FORMATTED ========--------
     const formattedCurrentWeather = await getWeatherData('weather', searchParams).then(formatCurrentWeather)
