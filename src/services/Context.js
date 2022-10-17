@@ -3,8 +3,7 @@
 import { DateTime } from "luxon"
 
 const BASE_URL = "https://api.openweathermap.org/data/2.5"
-// const API_ID = process.env.REACT_APP_WEATHER_API_KEY
-const API_ID = "b555a61e5b51a4ce94bdeed8a779f9d4"
+const API_ID = process.env.REACT_APP_WEATHER_API_KEY
 
 
 export const getWeatherData = (infoType, searchParams) => {

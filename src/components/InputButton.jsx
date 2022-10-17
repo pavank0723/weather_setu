@@ -10,7 +10,7 @@ function InputButton({ setQuery }) {
     }
 
     const handleKeyPress = (e) => {
-        if (e.key === 'enter') {
+        if (e.key === 'Enter') {
             if (city !== '') setQuery({ q: city })
         }
     }
